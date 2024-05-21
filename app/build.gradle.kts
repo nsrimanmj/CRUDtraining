@@ -23,9 +23,15 @@ android {
             useSupportLibrary = true
         }
 
+        val properties = Properties()
+        properties.load(project.rootProject.file("local.properties").inputStream())
+        buildConfigField("String", "SUPABASE_ANON_KEY", "\"${properties.getProperty("SUPABASE_ANON_KEY")}\"")
+        buildConfigField("String", "SUPABASE_URL", "\"${properties.getProperty("SUPABASE_URL")}\"")
 
     }
-
+    buildFeatures {
+        buildConfig = true // Enable BuildConfig features
+    }
 
 
     buildTypes {
