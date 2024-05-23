@@ -30,7 +30,9 @@ import com.example.crudtraining.R
 import kotlinx.coroutines.delay
 
 @Composable
-fun AnimatedButton() {
+fun AnimatedButton(
+    enabled:Boolean
+) {
     var isLoading by remember { mutableStateOf(false) }
     var showProgress by remember { mutableStateOf(false) }
     var animating by remember { mutableStateOf(false) }
@@ -53,9 +55,6 @@ fun AnimatedButton() {
             isLoading = false
             showProgress = false
         }
-        else{
-            animating = true
-        }
     }
 
     Box(
@@ -77,6 +76,7 @@ fun AnimatedButton() {
                 onClick = {
                     isLoading = true
                 },
+                enabled = enabled,
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.validate_green))
             ) {
@@ -91,5 +91,5 @@ fun AnimatedButton() {
 @Preview(showBackground = true)
 @Composable
 fun AnimatedButtonPreview(){
-    AnimatedButton()
+    AnimatedButton(true)
 }

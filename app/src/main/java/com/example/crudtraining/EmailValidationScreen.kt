@@ -41,6 +41,8 @@ import com.example.crudtraining.composables.CustomTextFields
 
 @Composable
 fun EmailValidationScreen(modifier: Modifier = Modifier){
+    val vm:SignUpViewModel = SignUpViewModel()
+    vm.startCountDownTimer()
     Scaffold(
         modifier = modifier.background(Color.Transparent)
     ) {paddingValues ->
@@ -61,6 +63,7 @@ fun EmailValidationScreen(modifier: Modifier = Modifier){
                 .fillMaxSize()
         ){
             Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = modifier
                     .fillMaxWidth()
                     .padding(16.dp)
@@ -71,12 +74,15 @@ fun EmailValidationScreen(modifier: Modifier = Modifier){
                     .padding(top = 24.dp)
                     .fillMaxWidth(), textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(16.dp))
-                Text(text = "Enter the 6-digit code sent to", textAlign = TextAlign.Center, color = colorResource(id = R.color.MJLedBlue), modifier = modifier.fillMaxWidth())
+                Text(text = "Enter the 6-digit code sent to", textAlign = TextAlign.Center, color = colorResource(id = R.color.MJLedBlue), fontSize = 20.sp, modifier = modifier.fillMaxWidth())
                 Spacer(modifier = Modifier.height(8.dp))
-                Text(text = "")
+                Text(text = vm.email, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(text = "If the email is not in your Inbox, please check your Spam or Junk Mail folders.", color = Color.Red, textAlign = TextAlign.Center)
+                Spacer(modifier = Modifier.height(16.dp))
                 CustomTextFields(
-                    value = "",
-                    onValueChange = {},
+                    value = vm.verificationCode,
+                    onValueChange = {vm.verificationCode = it},
                     modifier = modifier
                         .padding(horizontal = 16.dp)
                         .fillMaxWidth(),
@@ -84,17 +90,10 @@ fun EmailValidationScreen(modifier: Modifier = Modifier){
                     labelText = "Verification Code"
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-                AnimatedVisibility(visible = !buttonVisibility, modifier = Modifier.align(Alignment.End)) {
-                    TextButton(onClick = { buttonVisibility = !buttonVisibility }) {
-                        Text(text = "Changed button")
-                    }
+                TextButton(onClick = { vm.startCountDownTimer() }, modifier = Modifier.align(Alignment.End), enabled = !vm.isPlaying) {
+                    Text(text = if(vm.isPlaying) vm.timerText else "Didn't receive the code")
                 }
-                AnimatedVisibility(visible = buttonVisibility, modifier = Modifier.align(Alignment.End)) {
-                    TextButton(onClick = { buttonVisibility = !buttonVisibility }) {
-                        Text(text = "Didn't receive the code?")
-                    }
-                }
-                AnimatedButton()
+                AnimatedButton(enabled = vm.verificationCode.length > 5)
             }
 
         }
