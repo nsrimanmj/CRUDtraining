@@ -106,7 +106,7 @@ fun CreateAccountScreen(modifier: Modifier = Modifier){
                 Text(text = "Please ensure you can access this email account readily. In the next screen you\'d need to enter the authentication code we\'d send to this email-id",
                     fontSize = 14.sp,
                     color = colorResource(id = R.color.MJLedBlue),
-                    lineHeight = 16.sp
+                    lineHeight = 16.sp,
                 )
                 Spacer(modifier = Modifier.height(20.dp))
                 Text(text = "By continuing You agree to our Terms of Service and Privacy Policy.")

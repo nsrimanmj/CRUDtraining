@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="MJLedBlue">#0097DC</color>
+    <color name="validate_green">#00da9d</color>
+    <color name="light_gray">#e6e6e6</color>
 </resources>
