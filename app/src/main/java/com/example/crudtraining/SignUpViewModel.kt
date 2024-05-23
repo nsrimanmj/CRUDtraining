@@ -14,7 +14,7 @@ class SignUpViewModel:ViewModel() {
 
     var firstName by mutableStateOf("")
     var lastName by mutableStateOf("")
-    var email by mutableStateOf("srimannerella@gmail.com")
+    var email by mutableStateOf("")
     var verificationCode by mutableStateOf("")
     private var countDownTimer: CountDownTimer? = null
 

@@ -78,7 +78,7 @@ fun EmailValidationScreen(modifier: Modifier = Modifier){
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(text = vm.email, fontSize = 16.sp, fontWeight = FontWeight.Bold)
                 Spacer(modifier = Modifier.height(8.dp))
-                Text(text = "If the email is not in your Inbox, please check your Spam or Junk Mail folders.", color = Color.Red, textAlign = TextAlign.Center)
+                Text(text = "If the email is not in your Inbox, please check your Spam or Junk Mail folders.", color = Color.Red, textAlign = TextAlign.Center, modifier = Modifier.padding(horizontal = 16.dp))
                 Spacer(modifier = Modifier.height(16.dp))
                 CustomTextFields(
                     value = vm.verificationCode,

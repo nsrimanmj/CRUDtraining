@@ -41,7 +41,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun CreateAccountScreen(modifier: Modifier = Modifier){
+fun CreateAccountScreen(modifier: Modifier = Modifier,
+                        onBackClick: () -> Unit,
+                        onNextClick: () -> Unit,
+                        viewModel: SignUpViewModel = SignUpViewModel()
+                        ){
 
     Scaffold(
     modifier = modifier.background(Color.Transparent)
@@ -81,13 +85,13 @@ fun CreateAccountScreen(modifier: Modifier = Modifier){
             ) {
                 Text(text = "Create an Account", fontSize = 28.sp, fontWeight = FontWeight.Bold, modifier = modifier.padding(top = 24.dp))
                 Spacer(modifier = modifier.height(12.dp))
-                OutlinedTextField(value = firstName, onValueChange = {firstName = it}, modifier = modifier
+                OutlinedTextField(value = viewModel.firstName, onValueChange = {viewModel.firstName = it}, modifier = modifier
                     .fillMaxWidth(),
                     label = { Text(text = "First Name")},
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text, imeAction = ImeAction.Next)
                 )
                 Spacer(modifier = Modifier.height(12.dp))
-                OutlinedTextField(value = lastName, onValueChange = {lastName = it}, modifier = modifier
+                OutlinedTextField(value = viewModel.lastName, onValueChange = {viewModel.lastName = it}, modifier = modifier
                     .fillMaxWidth(), label = { Text(
                     text = "Last Name"
                 )},
@@ -95,7 +99,7 @@ fun CreateAccountScreen(modifier: Modifier = Modifier){
 
                 )
                 Spacer(modifier = Modifier.height(12.dp))
-                OutlinedTextField(value = email, onValueChange = {email = it}, modifier = modifier
+                OutlinedTextField(value = viewModel.email, onValueChange = {viewModel.email = it}, modifier = modifier
                     .fillMaxWidth(), label = { Text(
                     text = "Email"
                 )},
@@ -151,6 +155,6 @@ fun CreateAccountScreen(modifier: Modifier = Modifier){
 @Preview(showBackground = true)
 @Composable
 fun CreateAccountPreview(){
-    CreateAccountScreen()
+    CreateAccountScreen(Modifier,{},{})
 }
 
